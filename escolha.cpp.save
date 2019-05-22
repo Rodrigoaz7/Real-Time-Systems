@@ -1,0 +1,49 @@
+// UFRN-CT-DCA
+// Disciplina: Sistemas Operacionais
+// Programa matatdor.cpp
+// Sinais sã eventos gerados pelo Unix em resposta a algumas condições, como:
+//  erros, violação de memória, instrução ilegal, ...
+
+#include <signal.h> // definição dos sinais de interrupções
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h> // system()
+#include <sched.h>
+
+int main()
+{
+  // o processo
+
+  int menu;
+  int pid_vitima = ge;
+
+  	printf( "1 - MATAR \n 2 - PARAR \n 3 - CONTINUAR \n 4 - MUDAR CPU");
+  	scanf( "%d", &menu);
+
+  	switch(menu) {
+  		case 1:
+  			kill(pid_vitima, SIGKILL);
+  			break;
+  		case 2:
+  			kill(pid_vitima, SIGSTOP);
+  			break;
+  		case 3:
+  			kill(pid_vitima, SIGCONT);
+  			break;
+		case 4:
+			cpu_set_t set;
+			CPU_ZERO(&set);        // clear cpu mask
+			CPU_SET(0, &set);      // set cpu 0
+			sched_setaffinity(pid_vitima, sizeof(cpu_set_t), &set);
+  		default:
+  			break;
+  }
+
+ exit(0);
+}
+
+
+
+
+
+
